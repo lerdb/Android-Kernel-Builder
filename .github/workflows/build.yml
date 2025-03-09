@@ -57,10 +57,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python3 libarchive-tools
 
+      # - name: "⭐ Setup Python2"
+      #   uses: LizardByte/setup-python-action@master
+      #   with:
+      #     python-version: '2.7'
+      
       - name: "⭐ Setup Python2"
-        uses: LizardByte/setup-python-action@master
-        with:
-          python-version: '2.7'
+        run: |
+          curl https://pyenv.run | bash
+          export PATH="$HOME/.pyenv/bin:$PATH"
+          eval "$(pyenv init --path)"
+          eval "$(pyenv init -)"
+          pyenv install 2.7.18
+          pyenv global 2.7.18
 
       - name: "🌟 Clone kernel source => (${{ env.kernelRepo }})"
         working-directory: ./${{ env.kernelDir }}
