@@ -15,13 +15,10 @@ jobs:
       repos: ${{ steps.generate-matrix.outputs.repos }}
     steps:
       - name: "😄 Checkout"
-        uses: actions/checkout@v3
-
-      - name: Set up Python 2
-        run: |
-          sudo add-apt-repository ppa:deadsnakes/ppa
-          sudo apt-get update
-          sudo apt-get install python2
+      - uses: actions/checkout@v4
+      - uses: LizardByte/setup-python-action@master
+        with:
+          python-version: '2.7'
 
       - name: "😆 Generate Matrix"
         id: generate-matrix
