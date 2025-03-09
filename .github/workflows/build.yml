@@ -15,8 +15,10 @@ jobs:
       repos: ${{ steps.generate-matrix.outputs.repos }}
     steps:
       - name: "😄 Checkout"
-      - uses: actions/checkout@v4
-      - uses: LizardByte/setup-python-action@master
+        uses: actions/checkout@v4
+
+      - name: "😄 Setup Python2"
+        uses: LizardByte/setup-python-action@master
         with:
           python-version: '2.7'
 
